@@ -4,7 +4,7 @@
 SecureStack is an integrated security suite for networks, featuring SimpleScan (an nmap-based vulnerability scanner), EveBox (a Suricata frontend for intrusion detection), and PiHole (a DNS server / ad and malware blocker).
 
 ## What is it?
-Secure stack is meant to be installed in a docker environment. The overall goal of the project is to allow someone with limited security knowledge or money or both, to quickly deploy some helpful security tools on hardware that would otherwise me underpowered. Ultimately, I plan to include and ARM build so this can be installed on a RaspBerry PI 4b. Currently I recommend host specs of 4CPU cores and 6GB RAM, but for small nets you could get away with less RAM.
+Secure stack is meant to be installed in a docker environment. The overall goal of the project is to allow someone with limited security knowledge or money or both, to quickly deploy some helpful security tools on hardware that would otherwise be under-powered. Ultimately, I plan to include and ARM build so this can be installed on a RaspBerry PI 4b. Currently I recommend host specs of 2CPU cores and 4GB RAM, but for bigger networks that may be a push. 
 
 Note: You can simply copy the docker-compose into your favorite docker manager (I really like Portainer) and run the shell file to create the files you need, you don't have to use docker-compose directly. 
 
