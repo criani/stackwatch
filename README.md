@@ -14,8 +14,10 @@ Note: You can simply copy the docker-compose into your favorite docker manager (
    - **Note**:This shell uses apt-get, if you are on a system such as centOS that uses yum, you will need to update accordingly. 
    - Run the below Command
    
+   sudo mkdir /opt/stackwatch 
+   cd /opt/stackwatch
    git clone https://github.com/criani/stackwatch.git
-   cd stackwatch && sudo bash makefiles.sh
+   sudo bash makefiles.sh
 
 2. **Create Containers**:
    - Command: `sudo docker-compose up -d`
