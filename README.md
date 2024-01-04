@@ -1,7 +1,7 @@
 # SecureStack: Ultra Lightweight Homelab Security Solution
 
 ## Overview
-SecureStack is an integrated security suite for networks, featuring SimpleScan (an nmap-based vulnerability scanner), EveBox (a Suricata frontend for intrusion detection), and PiHole (a DNS ad and malware blocker).
+SecureStack is an integrated security suite for networks, featuring SimpleScan (an nmap-based vulnerability scanner), EveBox (a Suricata frontend for intrusion detection), and PiHole (a DNS server / ad and malware blocker).
 
 ## What is it?
 Secure stack is meant to be installed in a docker environment. The overall goal of the project is to allow someone with limited security knowledge or money or both, to quickly deploy some helpful security tools on hardware that would otherwise me underpowered. Ultimately, I plan to include and ARM build so this can be installed on a RaspBerry PI 4b. Currently I recommend host specs of 4CPU cores and 6GB RAM, but for small nets you could get away with less RAM.
