@@ -1,4 +1,4 @@
-# SecureStack: Ultra Lightweight Homelab Security Solution
+# StackWatch: Ultra Lightweight Homelab Security Solution
 
 ## Overview
 SecureStack is an integrated security suite for networks, featuring SimpleScan (an nmap-based vulnerability scanner), EveBox (a Suricata frontend for intrusion detection), and PiHole (a DNS server / ad and malware blocker).
