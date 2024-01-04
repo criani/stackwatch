@@ -9,20 +9,15 @@ Secure stack is meant to be installed in a docker environment. The overall goal 
 Note: You can simply copy the docker-compose into your favorite docker manager (I really like Portainer) and run the shell file to create the files you need, you don't have to use docker-compose directly. 
 
 ## Installation
-1. **Copy Contents**: 
+1. **Copy Contents and Install**: 
    - Preferred location: `/opt/<docker-install-location>`
-   - Platform: Primarily for Ubuntu.
+   - **Note**:This shell uses apt-get, if you are on a system such as centOS that uses yum, you will need to update accordingly. 
+   - Run the below Command
+   
+   git clone https://github.com/criani/stackwatch.git
+   cd stackwatch && sudo bash makefiles.sh
 
-2. **Install Docker Compose**:
-   - Command: `sudo apt update && sudo apt-get install docker-compose`
-
-3. **Run Setup Script**:
-   - Execute: `sudo bash makefile.sh`
-   - This script generates:
-     - `.env`: For Docker Compose container configuration.
-     - `stackwatch.json`: For dashboard import.
-
-4. **Create Containers**:
+2. **Create Containers**:
    - Command: `sudo docker-compose up -d`
    - Check containers: `sudo docker ps`
 

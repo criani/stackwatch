@@ -1,17 +1,35 @@
 #!/bin/bash
 
-# Check if jq is installed, if not, install it
-if ! command -v jq &> /dev/null
-then
-    echo "jq could not be found, installing..."
-    # Assuming a Debian/Ubuntu system, using apt-get to install jq
-    sudo apt-get update && sudo apt-get install jq -y
+# Function to check if a command exists
+command_exists() {
+    command -v "$@" > /dev/null 2>&1
+}
+
+# Check for Docker and install it if not found
+if ! command_exists docker; then
+    echo "Docker is not installed. Installing Docker..."
+    sudo apt-get update
+    sudo apt-get install -y docker.io
+    sudo systemctl start docker
+    sudo systemctl enable docker
 fi
 
-# Prompt user for the host IP address
-read -p "Enter the host IP address: " host_ip
+# Check for Docker Compose and install it if not found
+if ! command_exists docker-compose; then
+    echo "Docker Compose is not installed. Installing Docker Compose..."
+    sudo curl -L "https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+fi
 
-# Prompt user for Pi-hole initial password
+# Check for jq and install it if not found
+if ! command_exists jq; then
+    echo "jq could not be found. Installing jq..."
+    sudo apt-get update
+    sudo apt-get install jq -y
+fi
+
+# Prompt user for the host IP address and Pi-hole initial password
+read -p "Enter the host IP address: " host_ip
 read -p "Enter the Pi-hole initial password: " pihole_password
 
 # Create a JSON template for heimdall dashboard setup
@@ -42,7 +60,7 @@ json_template='[
   }
 ]'
 
-# Replace IP_ADDRESS placeholder with the actual IP address in the JSON template
+# Replace IP_ADDRESS placeholder in the JSON template
 updated_json=$(echo $json_template | jq --arg ip "$host_ip" 'map(.url |= gsub("IP_ADDRESS"; $ip))')
 
 # Save to a new file
