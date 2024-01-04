@@ -8,10 +8,13 @@ then
     sudo apt-get update && sudo apt-get install jq -y
 fi
 
-# Prompt user for the host IP address for the JSON file
-read -p "Enter the host IP address for JSON: " json_host_ip
+# Prompt user for the host IP address
+read -p "Enter the host IP address: " host_ip
 
-# Create a JSON template similar to the provided file
+# Prompt user for Pi-hole initial password
+read -p "Enter the Pi-hole initial password: " pihole_password
+
+# Create a JSON template for heimdall dashboard setup
 json_template='[
   {
     "title": "EveBox Suricata",
@@ -39,21 +42,18 @@ json_template='[
   }
 ]'
 
-# Replace IP_ADDRESS placeholder with the actual IP address
-updated_json=$(echo $json_template | jq --arg ip "$json_host_ip" 'map(.url |= gsub("IP_ADDRESS"; $ip))')
+# Replace IP_ADDRESS placeholder with the actual IP address in the JSON template
+updated_json=$(echo $json_template | jq --arg ip "$host_ip" 'map(.url |= gsub("IP_ADDRESS"; $ip))')
 
 # Save to a new file
 echo $updated_json > securestack.json
 echo "JSON file created: securestack.json"
 
-# Prompt user for Pi-hole initial password and host IP address for .env file
-read -p "Enter the Pi-hole initial password: " pihole_password
-read -p "Enter the host IP address for .env: " env_host_ip
-
 # Create the .env file
 echo "WEBPASSWORD_Pihole=$pihole_password" > .env
 echo "TZ=UTC" >> .env
-echo "PIHOLE_DNS=9.9.9.9" >> .env
-echo "HOST_IP=$env_host_ip" >> .env
+echo "PIHOLE_DNS=9.9.9.9 #preferred upstream" >> .env
+echo "HOST_IP=$host_ip #IP of the container host" >> .env
 
 echo ".env file created."
+
