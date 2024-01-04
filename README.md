@@ -46,9 +46,10 @@ Contributions are welcome. See [Contribution Guidelines](CONTRIBUTING.md) for mo
 
 ## Attribution
 This stack is comprised of various containers that were made by, and maintained by, some amazing folks THAT ARE NOT ME. 
-I am simply riding on the shoulders of giants! 
-EveBox is made by Jasonish
-PiHole is an amazing community supported application
-I made SimpleScan, but not that would not be possible without having tools like Bootstrap and NMAP available to me
+- I am simply riding on the shoulders of giants! 
+- EveBox is made by Jasonish
+- PiHole is an amazing community supported application
+- I made SimpleScan, but not that would not be possible without having tools like Bootstrap and NMAP available to me!
+- The dashboard is from Heimdall, another amazing open source project
 
-I will do my absolute best to include all credit where it is due. If I forget to attribute work you did that I included in this project, please let me know so I can give credit! 
+- I will do my absolute best to include all credit where it is due. If I forget to attribute work you did that I included in this project, please let me know so I can give credit! 
