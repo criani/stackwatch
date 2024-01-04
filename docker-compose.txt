@@ -1,0 +1,68 @@
+version: '3'
+services:
+  simplescan:
+    image: nextier/simplescan:latest
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_APP=main.py
+      - FLASK_ENV=development
+    command: flask run --host=0.0.0.0
+
+  pihole:
+    image: pihole/pihole:latest
+    ports:
+      - "${HOST_IP}:53:53/tcp"
+      - "${HOST_IP}:53:53/udp"
+      - "${HOST_IP}:67:67/udp"
+      - "${HOST_IP}:80:80/tcp"
+      - "${HOST_IP}:443:443/tcp"
+    environment:
+      TZ: ${TZ}
+      WEBPASSWORD: ${WEBPASSWORD_Pihole}
+      DNS1: ${PIHOLE_DNS} # Primary DNS
+      DNS2: 'no' # Secondary DNS, set to 'no' if not used
+    volumes:
+      - ./etc-pihole:/etc/pihole
+      - ./etc-dnsmasq.d:/etc/dnsmasq.d
+    cap_add:
+      - NET_ADMIN
+
+  evebox:
+    image: jasonish/evebox:latest
+    ports:
+      - "5636:5636"
+    volumes:
+      - simple-ids-evebox-lib:/data # This volume is used as the data directory for EveBox
+      - simple-ids-suricata-log:/var/log/suricata
+    command: evebox server --host=0.0.0.0 --datastore sqlite --data-directory /data --input /var/log/suricata/eve.json
+
+
+  suricata:
+    image: jasonish/suricata:latest
+    network_mode: "host"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_NICE
+    volumes:
+      - simple-ids-suricata-run:/var/run/suricata
+      - simple-ids-suricata-log:/var/log/suricata
+      - simple-ids-suricata-lib:/etc/suricata
+    command: -v -i ens18
+
+      
+  heimdall:
+    image: lscr.io/linuxserver/heimdall:latest
+    ports:
+      - "${HOST_IP}:8080:80"
+    volumes:
+      - heimdall:/config
+
+volumes:
+  simplescan:
+  simple-ids-suricata-run:
+  simple-ids-suricata-log:
+  simple-ids-suricata-lib:
+  simple-ids-evebox-lib:
+  heimdall:
