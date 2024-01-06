@@ -4,6 +4,8 @@ services:
     image: nextier/simplescan:latest
     ports:
       - "5000:5000"
+    volumes:
+      - ./scans:/app/scans
     environment:
       - FLASK_APP=main.py
       - FLASK_ENV=development
