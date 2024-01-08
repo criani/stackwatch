@@ -22,7 +22,7 @@ Note: You can simply copy the docker-compose into your favorite docker manager (
 ## Access and Configuration
 - **Dashboard Access**: Navigate to `<host-ip>:8080`.
 - **Import Configuration**:
-  - In the dashboard, go to settings, select 'Import', and upload `stackwatch.json`.
+  - In the dashboard, go to settings, select 'Import', and upload `stackwatch.json`, which is created and saved to the directory you ran the installer command.
 
 ## Components
 - **SimpleScan**: URL/IP range scanner.
