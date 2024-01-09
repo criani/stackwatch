@@ -32,7 +32,7 @@ fi
 host_ip=$(hostname -I | awk '{print $1}')
 
 # Prompt user for Pi-hole initial password
-#read -p "Enter the Pi-hole initial password: " pihole_password
+read -p "Enter the Pi-hole initial password: " pihole_password
 
 # Create a JSON template for heimdall dashboard setup
 json_template='[

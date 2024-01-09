@@ -6,10 +6,6 @@ services:
       - "5000:5000"
     volumes:
       - ./scans:/app/scans
-    cap_add:
-      - NET_ADMIN
-      - NET_RAW
-      - SYS_NICE
     environment:
       - FLASK_APP=main.py
       - FLASK_ENV=development
