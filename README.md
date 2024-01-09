@@ -4,28 +4,28 @@
 StackWatch is an integrated security suite for networks, featuring SimpleScan (an nmap-based vulnerability scanner), EveBox (a Suricata frontend for intrusion detection), and PiHole (a DNS server / ad and malware blocker).
 
 ## What is it?
-StackWatch is meant to be installed in a docker environment. The overall goal of the project is to allow someone with limited security knowledge or money or both, to quickly deploy some helpful security tools on hardware that would otherwise be under-powered. Ultimately, I plan to include and ARM build so this can be installed on a RaspBerry PI 4b. Currently I recommend host specs of 2CPU cores and 4GB RAM, but for bigger networks that may be a push. 
+StackWatch is meant to be installed in a docker environment. The overall goal of the project is to allow someone with limited security knowledge or money or both, to quickly deploy some helpful security tools on hardware that would otherwise be under-powered. I included an ARM build so this can be installed on a RaspBerry PI. Currently I recommend host specs of 2CPU cores and 4GB RAM, but for bigger networks that may be a push. 
 
-Note: You can simply copy the docker-compose into your favorite docker manager (I really like Portainer) and run the shell file to create the files you need, you don't have to use docker-compose directly. 
+Note: If you dont want to run the install script or want to customize, you can simply copy the docker-compose into your favorite docker manager (I really like Portainer) and run the shell file to create the files you need (it's just a JSON file for heimdall and the docker-compose with your required passwrd and IP).
 
 ## Installation
 1. **Copy Contents and Install**:
    - On the host do the following
-   - **Note**:This shell uses apt-get, if you are on a system such as centOS that uses yum, you will need to update accordingly. 
+   - **Note**:This shell uses apt-get, if you are on a system such as centOS that uses yum, you will need to update accordingly. See above for manual install. 
    - Run the below Command   
    - Bash: `cd /opt/ && sudo git clone https://github.com/criani/stackwatch.git && cd /opt/stackwatch && sudo bash autoinstall.sh`
 
 3. **Validate Containers**:
    - The final part of the autoinstall.sh should run, which will show the running containers
-   - Check containers: `sudo docker ps`
+   - if you are not sure, Check containers: `sudo docker ps -a` to make sure all are up. 
 
 ## Access and Configuration
-- **Dashboard Access**: Navigate to `<host-ip>:8080`.
+- **Dashboard Access**: Navigate to `<docker host-ip>:8080`.
 - **Import Configuration**:
   - In the dashboard, go to settings, select 'Import', and upload `stackwatch.json`, which is created and saved to the directory you ran the installer command.
 
 ## Components
-- **SimpleScan**: URL/IP range scanner.
+- **SimpleScan**: URL/IP vulnerability and port scanner.
 - **EveBox**: Suricata-based network threat monitor.
 - **PiHole**: DNS server/filter for blocking ads/malicious sites.
 
