@@ -34,13 +34,13 @@ Note: If you dont want to run the install script or want to customize, you can s
 - Configure network DNS settings to point to the PiHole host.
 
 ## Support
-For queries or issues, please refer to the [GitHub Issues](#) section.
+For queries or issues, please refer to the Issues section.
 
 ## License
-[MIT License](LICENSE)
+TODO
 
 ## Contributing
-Contributions are welcome. See [Contribution Guidelines](CONTRIBUTING.md) for more details.
+TODO > Contributions are welcome. See [Contribution Guidelines](CONTRIBUTING.md) for more details.
 
 ## Attribution
 This stack is comprised of various containers that were made by, and maintained by, some amazing folks THAT ARE NOT ME. 
